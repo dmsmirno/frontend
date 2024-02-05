@@ -1,0 +1,91 @@
+.voting-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.overall-container {
+  width: 66.67%; /* Make the container take up about 2/3 of the screen width */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+.button.is-wide {
+  width: 40%; /* Adjust as needed */
+  margin: 0.5rem; /* Adjust as needed */
+}
+
+@media screen and (max-width: 1200px) {
+  .button.is-wide {
+    width: 100%;
+  }
+}
+
+.pt-7 {
+  padding-top: 7rem;
+}
+
+
+.large-poster img {
+    width: 50%; /* Make the posters take up about half of the screen width */
+    height: auto; /* Scale the height automatically to maintain the aspect ratio */
+    display: block; /* Make the image a block element */
+    margin: 0 auto; /* Center the image horizontally */
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 20%;
+  padding-top: 1rem; /* Adjust as needed */
+}
+
+.exit {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 1rem; /* Adjust as needed */
+}
+
+.pt-7 {
+  padding-top: 7rem;
+}
+
+
+.posters-container {
+  display: flex;
+  justify-content: center;
+  min-width: 500px;
+  overflow: auto; /* Enables scrolling */
+}
+
+
+.image.shaped img {
+  min-width: 200px; /* Adjust as needed */
+  min-height: 100px; /* Adjust as needed */
+  object-fit: cover; /* This will ensure the aspect ratio of the image is maintained */
+  padding-left: 7rem;
+  padding-right: 7rem;
+}
+
+.blurred-poster img {
+  filter: blur(2px);
+}
+
+@media screen and (max-width: 1800px) {
+  .extra-poster {
+    display: none;
+    filter: blur(2px);
+  }
+}
+
+.desc::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 2000px) {
+  .mobile-text {
+    font-size: 40.5px; /* 75% of 30px */
+  }
+}

@@ -1,0 +1,10 @@
+.width-adjusted {
+  width: 20%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1000px) {
+  .width-adjusted {
+    width: 100%;
+  }
+}
