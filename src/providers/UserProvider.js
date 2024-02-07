@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { loginUser, logoutUser, validateSession } from '../services/userApi';
+import { loginOAuthUser, getSession, logoutUser, validateSession } from '../services/userApi';
 
 export const UserContext = React.createContext();
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
 
+  const handleAuthorizedRequestToken = async (token) => {
+    // Assuming the user data is returned when creating a session
+    const user = await getSession(token);
+    localStorage.setItem('user', JSON.stringify(user));
+    setUser(user);
+  };
+
+  
   useEffect(() => {
     const localUser = localStorage.getItem('user');
     if (localUser) {
@@ -19,10 +27,8 @@ export function UserProvider({ children }) {
     }
   }, []);
 
-  const login = async (username, password) => {
-    const user = await loginUser(username, password);
-    localStorage.setItem('user', JSON.stringify(user));
-    setUser(user);
+  const login = async () => {
+    const user = await loginOAuthUser();
   };
 
   const logout = async () => {
@@ -37,7 +43,7 @@ export function UserProvider({ children }) {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout, handleAuthorizedRequestToken }}>
       {children}
     </UserContext.Provider>
   );

@@ -12,7 +12,7 @@ export const startMovieParty = async (sessionType, customSessionType) => {
 export const getCustomSessionOptions = async (user) => {
   try {
     const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies/custom-session-options`, {
-      headers: { Authorization: `Bearer ${user.sessionId}` }
+      headers: { Authorization: `Bearer ${user}` }
     });
     return response.data;
   } catch (error) {
@@ -23,7 +23,7 @@ export const getCustomSessionOptions = async (user) => {
 export const getFavorites = async (user) => {
   try {
     const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies/favorites`, {
-      headers: { Authorization: `Bearer ${user.sessionId}` }
+      headers: { Authorization: `Bearer ${user}` }
     });
     return response.data;
   } catch (error) {
@@ -34,7 +34,7 @@ export const getFavorites = async (user) => {
 export const getWatchlist = async (user) => {
   try {
     const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies/watchlist`, {
-      headers: { Authorization: `Bearer ${user.sessionId}` }
+      headers: { Authorization: `Bearer ${user}` }
     });
     return response.data;
   } catch (error) {
@@ -45,7 +45,7 @@ export const getWatchlist = async (user) => {
 export const getCustomLists = async (user) => {
   try {
     const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies/custom-lists`, {
-      headers: { Authorization: `Bearer ${user.sessionId}` }
+      headers: { Authorization: `Bearer ${user}` }
     });
     return response.data;
   } catch (error) {
@@ -60,7 +60,7 @@ export const getCustomListContent = async (user, customSelection) => {
 
   try {
     const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies/custom-list-content`, {
-      headers: { Authorization: `Bearer ${user.sessionId}` },
+      headers: { Authorization: `Bearer ${user}` },
       params: { customSelection }
     });
     return response.data;
@@ -73,7 +73,7 @@ export const createParty = async (movies, user) => {
   try {
     const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/movies/create-party`, { movies }, {
       headers: {
-        Authorization: `Bearer ${user.sessionId}`
+        Authorization: `Bearer ${user}`
       }
     });
     return response;

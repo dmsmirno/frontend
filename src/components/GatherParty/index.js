@@ -91,16 +91,12 @@ const GatherParty = () => {
     
         // Cleanup function
         return () => {
-            if (isUnmounting.current) {
-              if (ws.current) {
-                if(isOwner) {
-                  ws.current.send(JSON.stringify({ type: 'PASS_OWNER', partyId: inviteCode }));
-                }
-                ws.current.close();
-              }
-            } else {
-              isUnmounting.current = true;
+          if (ws.current) {
+            if(isOwner) {
+              ws.current.send(JSON.stringify({ type: 'PASS_OWNER', partyId: inviteCode }));
             }
+            ws.current.close();
+          }
         };
     }, [inviteCode]);
 

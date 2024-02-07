@@ -1,6 +1,5 @@
 
 import React, { useState, useContext } from 'react';
-import { loginUser as login } from '../../services/userApi';
 import { UserContext } from '../../providers/UserProvider';
 import { useNavigate } from 'react-router-dom';
 import { joinParty } from '../../services/partyApi';
@@ -11,7 +10,7 @@ const Login = ({ error: errorProp }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(errorProp || '');
   const [joinError, setJoinError] = useState('');
-  const { user, login, logout } = useContext(UserContext);
+  const { login } = useContext(UserContext);
   const [inviteCode, setInviteCode] = useState('');
   const navigate = useNavigate();
 
@@ -20,9 +19,9 @@ const Login = ({ error: errorProp }) => {
     setError('');
 
     try {
-      await login(username, password);
+      await login();
     } catch (error) {
-      setError('Invalid username or password');
+      setError('Invalid login credentials');
     }
   };
 
@@ -48,20 +47,8 @@ const Login = ({ error: errorProp }) => {
     <div className="section">
       <div className="container">
         <div className="box">
-          <h1 className="title">Please use TMDB Credentials</h1>
+          <h1 className="title">Approve Through TMDB</h1>
           <form onSubmit={handleLogin}>
-            <div className="field">
-              <label className="label">Username</label>
-              <div className="control">
-                <input className="input" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control">
-                <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-              </div>
-            </div>
             <div className="field">
               <div className="control">
                 <button className="button is-primary" type="submit">Login</button>
